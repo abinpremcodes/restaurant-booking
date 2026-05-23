@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}My Bookings{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">📋 My Bookings</h2>
+
+{% for booking in bookings %}
+    <div class="card shadow mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <h5>🍽️ {{ booking.restaurant.name }}</h5>
+                    <p class="mb-1">📅 Date: {{ booking.date }}</p>
+                    <p class="mb-1">⏰ Time: {{ booking.timeslot.time }}</p>
+                    <p class="mb-1">👥 Guests: {{ booking.guests }}</p>
+                    <p class="mb-1">
+                        Status: 
+                        {% if booking.status == 'confirmed' %}
+                            <span class="badge bg-success">Confirmed</span>
+                        {% elif booking.status == 'cancelled' %}
+                            <span class="badge bg-danger">Cancelled</span>
+                        {% else %}
+                            <span class="badge bg-warning">Pending</span>
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="col-md-4 text-end">
+                    {% if booking.status != 'cancelled' %}
+                        <a href="{% url 'booking_cancel' booking.pk %}" class="btn btn-outline-danger">Cancel Booking</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% empty %}
+    <div class="alert alert-info">You have no bookings yet! <a href="{% url 'restaurant_list' %}">Browse Restaurants</a></div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}All Restaurants{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">🍽️ All Restaurants</h2>
+
+<div class="row">
+    {% for restaurant in restaurants %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow">
+            {% if restaurant.image %}
+                <img src="{{ restaurant.image.url }}" class="card-img-top" height="200" style="object-fit: cover;">
+            {% else %}
+                <img src="https://via.placeholder.com/400x200?text=No+Image" class="card-img-top" height="200">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ restaurant.name }}</h5>
+                <p class="card-text text-muted">🍴 {{ restaurant.cuisine }}</p>
+                <p class="card-text">📍 {{ restaurant.location }}</p>
+                <a href="{% url 'restaurant_detail' restaurant.pk %}" class="btn btn-danger w-100">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <p>No restaurants found!</p>
+    {% endfor %}
+</div>
+{% endblock %}

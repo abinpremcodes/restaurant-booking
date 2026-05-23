@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}DineEasy - Find & Book Restaurants{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<div class="text-center py-5 mb-5" style="background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200') center/cover no-repeat; border-radius: 20px; color: white;">
+    <h1 class="display-3 fw-bold" style="font-family: 'Playfair Display', serif;">Welcome to DineEasy</h1>
+    <p class="lead mt-3 mb-1">Discover and book the best restaurants in Kozhikode</p>
+    <p class="mb-4" style="color: #f0a500;">🌟 Your perfect dining experience is just a click away!</p>
+    <a href="{% url 'restaurant_list' %}" class="btn btn-lg px-5 fw-bold" style="background: #f0a500; color: white; border-radius: 30px; border: none; padding: 15px 40px; transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.color='#f0a500';" onmouseout="this.style.background='#f0a500'; this.style.color='white';">
+        🍽️ Browse Restaurants
+    </a>
+</div>
+
+<!-- Features Section -->
+<h2 class="text-center mb-4" style="color: #1a1a1a;">Why Choose DineEasy?</h2>
+<div class="row text-center mt-2">
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100 p-3" style="background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400') center/cover no-repeat; color: white; border-radius: 15px;">
+            <div class="card-body">
+                <h1>🍴</h1>
+                <h5 class="mt-2">Find Restaurants</h5>
+                <p>Browse through the best restaurants in your area</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100 p-3" style="background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400') center/cover no-repeat; color: white; border-radius: 15px;">
+            <div class="card-body">
+                <h1>📅</h1>
+                <h5 class="mt-2">Book a Table</h5>
+                <p>Reserve your table in just a few clicks</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card shadow h-100 p-3" style="background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=400') center/cover no-repeat; color: white; border-radius: 15px;">
+            <div class="card-body">
+                <h1>⭐</h1>
+                <h5 class="mt-2">Leave Reviews</h5>
+                <p>Share your dining experience with others</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+{% if not user.is_authenticated %}
+<div class="text-center mt-5 mb-5 py-5" style="background: linear-gradient(135deg, #1a1a1a, #2d2d2d); border-radius: 20px; color: white;">
+    <h2 style="font-family: 'Playfair Display', serif;">Ready to Book Your Table?</h2>
+    <p class="text-muted mt-2">Join thousands of food lovers who use DineEasy!</p>
+    <a href="{% url 'register' %}" class="btn btn-lg px-4 me-3 mt-3" style="background: #f0a500; color: white; border-radius: 25px; border: none;">Get Started</a>
+    <a href="{% url 'login' %}" class="btn btn-lg px-4 mt-3" style="background: transparent; color: white; border-radius: 25px; border: 2px solid white;">Login</a>
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Cancel Booking{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <h3 class="text-center mb-4">❌ Cancel Booking</h3>
+                
+                <div class="alert alert-warning">
+                    <p>Are you sure you want to cancel this booking?</p>
+                </div>
+                
+                <p>🍽️ Restaurant: <strong>{{ booking.restaurant.name }}</strong></p>
+                <p>📅 Date: <strong>{{ booking.date }}</strong></p>
+                <p>⏰ Time: <strong>{{ booking.timeslot.time }}</strong></p>
+                <p>👥 Guests: <strong>{{ booking.guests }}</strong></p>
+                
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger w-100">Yes, Cancel Booking</button>
+                </form>
+                
+                <div class="text-center mt-3">
+                    <a href="{% url 'booking_list' %}">No, Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
